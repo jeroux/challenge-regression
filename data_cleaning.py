@@ -1,15 +1,15 @@
 import pandas as pd
-import numpy as np
-
+from utils.utils import *
 
 url = "https://raw.githubusercontent.com/JulienAlardot/challenge-collecting-data/main/Data/database.csv"
 df = pd.read_csv("Data3.csv")
 
-del df['Unnamed: 0.1']
-del df['Unnamed: 0.1.1']
-del df['Unnamed: 0.1.1.1']
-del df['Unnamed: 0.1.1.1.1']
-del df['Unnamed: 0']
+drop_row_without_value("Price", df)
+df["PriceperMeter"] = df["Price"]//df["Area"]
+df["Province"] = df.apply(lambda x: change_to_province(x["Locality"])[0], axis=1)
+df["Region"] = df.apply(lambda x: change_to_province(x["Locality"])[1], axis=1)
+df["Prov_num"] = df.apply(lambda x: change_to_province(x["Locality"])[2], axis=1)
+df["Region_num"] = df.apply(lambda x: change_to_province(x["Locality"])[3], axis=1)
 
 #del df['Unnamed: 0']
 #del df['Url']
@@ -32,4 +32,4 @@ del df['Unnamed: 0']
 
 #df = df.set_index()
 #data_final = df.reset_index()
-df.to_csv("Data3.csv")
+df.to_csv("Data4.csv")
