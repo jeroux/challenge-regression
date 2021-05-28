@@ -4,6 +4,7 @@ from utils.utils import *
 url = "https://raw.githubusercontent.com/JulienAlardot/challenge-collecting-data/main/Data/database.csv"
 df = pd.read_csv("Data3.csv")
 
+drop_row_without_value("Area", df)
 drop_row_without_value("Price", df)
 df["PriceperMeter"] = df["Price"]//df["Area"]
 df["Province"] = df.apply(lambda x: change_to_province(x["Locality"])[0], axis=1)
@@ -32,4 +33,4 @@ df["Region_num"] = df.apply(lambda x: change_to_province(x["Locality"])[3], axis
 
 #df = df.set_index()
 #data_final = df.reset_index()
-df.to_csv("Data4.csv")
+df.to_csv("Data5.csv")
