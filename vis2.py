@@ -16,4 +16,4 @@ pd.set_option("display.max_columns", None)
 # plt.xlabel('Area')
 # plt.ylabel('Price')
 
-print(df.info())
+print(df.describe())

@@ -14,6 +14,8 @@ df['State of the building'] = df['State of the building'].fillna("medium")
 df['Surface of the land'] = df['Area'] + df['Terrace Area'] + df['Garden Area']
 del df['Terrace']
 del df['Garden']
+del df['Prov_num']
+del df['Region_num']
 
 # drop_row_without_value("Area", df)
 # drop_row_without_value("Price", df)
