@@ -1,16 +1,17 @@
 import pandas as pd
 from utils.utils import *
+import numpy as np
 
 url = "https://raw.githubusercontent.com/JulienAlardot/challenge-collecting-data/main/Data/database.csv"
-df = pd.read_csv("Data3.csv")
+df = pd.read_csv("Data5.csv")
 
-drop_row_without_value("Area", df)
-drop_row_without_value("Price", df)
-df["PriceperMeter"] = df["Price"]//df["Area"]
-df["Province"] = df.apply(lambda x: change_to_province(x["Locality"])[0], axis=1)
-df["Region"] = df.apply(lambda x: change_to_province(x["Locality"])[1], axis=1)
-df["Prov_num"] = df.apply(lambda x: change_to_province(x["Locality"])[2], axis=1)
-df["Region_num"] = df.apply(lambda x: change_to_province(x["Locality"])[3], axis=1)
+# drop_row_without_value("Area", df)
+# drop_row_without_value("Price", df)
+# df["PriceperMeter"] = df["Price"]//df["Area"]
+# df["Province"] = df.apply(lambda x: change_to_province(x["Locality"])[0], axis=1)
+# df["Region"] = df.apply(lambda x: change_to_province(x["Locality"])[1], axis=1)
+# df["Prov_num"] = df.apply(lambda x: change_to_province(x["Locality"])[2], axis=1)
+# df["Region_num"] = df.apply(lambda x: change_to_province(x["Locality"])[3], axis=1)
 
 #del df['Unnamed: 0']
 #del df['Url']
@@ -33,4 +34,17 @@ df["Region_num"] = df.apply(lambda x: change_to_province(x["Locality"])[3], axis
 
 #df = df.set_index()
 #data_final = df.reset_index()
-df.to_csv("Data5.csv")
+del df['Unnamed: 0']
+del df['Unnamed: 0.1']
+del df['Type of sale']
+
+del df['Surface area of the plot of land']
+del df['Url']
+
+# df = df.set_index("Unnamed: 0.1")
+# df = df.reset_index()
+# dfhouse = df.drop(df.index[np.where(df["Type of property"] == "house")[0]])
+# dfapart = df.drop(df.index[np.where(df["Type of property"] == "apartment")[0]])
+# dfhouse.to_csv("DataHouse.csv")
+df.to_csv("Data6.csv")
+
