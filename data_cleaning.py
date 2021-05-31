@@ -3,7 +3,17 @@ from utils.utils import *
 import numpy as np
 
 url = "https://raw.githubusercontent.com/JulienAlardot/challenge-collecting-data/main/Data/database.csv"
-df = pd.read_csv("Data5.csv")
+df = pd.read_csv("Data6.csv")
+df = df[df['Type of property'].notna()]
+df['Terrace Area'] = df['Terrace Area'].fillna(0)
+df['Garden Area'] = df['Garden Area'].fillna(0)
+df['Furnished'] = df['Furnished'].fillna(0)
+df['Number of facades'] = df['Number of facades'].fillna(2)
+df['Number of rooms'] = df['Number of rooms'].fillna(2.6)
+df['State of the building'] = df['State of the building'].fillna("medium")
+df['Surface of the land'] = df['Area'] + df['Terrace Area'] + df['Garden Area']
+del df['Terrace']
+del df['Garden']
 
 # drop_row_without_value("Area", df)
 # drop_row_without_value("Price", df)
@@ -35,16 +45,16 @@ df = pd.read_csv("Data5.csv")
 #df = df.set_index()
 #data_final = df.reset_index()
 del df['Unnamed: 0']
-del df['Unnamed: 0.1']
-del df['Type of sale']
+#del df['Unnamed: 0.1']
+#del df['Type of sale']
 
-del df['Surface area of the plot of land']
-del df['Url']
+del df['Subtype of property']
+#del df['Url']
 
 # df = df.set_index("Unnamed: 0.1")
 # df = df.reset_index()
 # dfhouse = df.drop(df.index[np.where(df["Type of property"] == "house")[0]])
 # dfapart = df.drop(df.index[np.where(df["Type of property"] == "apartment")[0]])
 # dfhouse.to_csv("DataHouse.csv")
-df.to_csv("Data6.csv")
+df.to_csv("Data8.csv")
 
